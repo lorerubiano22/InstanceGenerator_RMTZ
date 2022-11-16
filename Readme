@@ -101,7 +101,7 @@ NC: Network connectivity
 
 Input example
 
-<img src="static_instancegenerator\exampleInputs.png" style="width:55%;"/>
+
 
 $\LARGE{Output}$
 
@@ -132,7 +132,6 @@ $r_{ijt}\left( \pi_{pt} \right)$: Expected revenue corresponding to $\left(j,i\r
 
 Instance visualization
 
-<img src="static_instancegenerator\exampleOutput.png" " style="width:100%;"/>
 
 
 												
