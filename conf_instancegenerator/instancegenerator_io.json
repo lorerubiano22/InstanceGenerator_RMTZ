@@ -1,0 +1,321 @@
+{
+	"modelTitle":	"G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m",
+	"inputSymbols":	{
+		"i":	{
+			"alias":	"zones",
+			"symtype":	"set",
+			"headers":	{
+				"uni":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"text":	{
+					"type":	"string",
+					"alias":	"Set text zones"
+				}
+			}
+		},
+		"b":	{
+			"alias":	"border nodes",
+			"symtype":	"set",
+			"headers":	{
+				"uni":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"text":	{
+					"type":	"string",
+					"alias":	"Set text border nodes"
+				}
+			}
+		},
+		"p":	{
+			"alias":	"price stages",
+			"symtype":	"set",
+			"headers":	{
+				"uni":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"text":	{
+					"type":	"string",
+					"alias":	"Set text price stages"
+				}
+			}
+		},
+		"t":	{
+			"alias":	"tariff zones",
+			"symtype":	"set",
+			"headers":	{
+				"uni":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"text":	{
+					"type":	"string",
+					"alias":	"Set text tariff zones"
+				}
+			}
+		},
+		"_scalars":	{
+			"alias":	"Input Scalars",
+			"symnames":	["netconnect", "xdim"],
+			"symtext":	["fraction rho", "xdim"],
+			"symtypes":	["parameter", "parameter"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		}
+	},
+	"outputSymbols":	{
+		"d":	{
+			"alias":	"length of transport network arc",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"zones"
+				},
+				"j":	{
+					"type":	"string",
+					"alias":	"Aliased with i"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"length of transport network arc"
+				}
+			}
+		},
+		"_scalars_out":	{
+			"alias":	"Output Scalars",
+			"symnames":	["cbd"],
+			"symtext":	["cbd"],
+			"symtypes":	["set"],
+			"headers":	{
+				"scalar":	{
+					"type":	"string",
+					"alias":	"Scalar Name"
+				},
+				"description":	{
+					"type":	"string",
+					"alias":	"Scalar Description"
+				},
+				"value":	{
+					"type":	"string",
+					"alias":	"Scalar Value"
+				}
+			}
+		},
+		"g":	{
+			"alias":	"transport network graph",
+			"symtype":	"set",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"zones"
+				},
+				"j":	{
+					"type":	"string",
+					"alias":	"Aliased with i"
+				},
+				"text":	{
+					"type":	"string",
+					"alias":	"Set text transport network graph"
+				}
+			}
+		},
+		"dij":	{
+			"alias":	"dij",
+			"symtype":	"parameter",
+			"headers":	{
+				"uni":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"uni#1":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"dij"
+				}
+			}
+		},
+		"rev":	{
+			"alias":	"rev",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"zones"
+				},
+				"j":	{
+					"type":	"string",
+					"alias":	"Aliased with i"
+				},
+				"p":	{
+					"type":	"string",
+					"alias":	"price stages"
+				},
+				"t":	{
+					"type":	"string",
+					"alias":	"tariff zones"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"rev"
+				}
+			}
+		},
+		"sp":	{
+			"alias":	"sp",
+			"symtype":	"set",
+			"headers":	{
+				"uni":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"uni#1":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"uni#2":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"uni#3":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"text":	{
+					"type":	"string",
+					"alias":	"Set text "
+				}
+			}
+		},
+		"w":	{
+			"alias":	"w",
+			"symtype":	"variable",
+			"headers":	{
+				"uni":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"uni#1":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"uni#2":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"uni#3":	{
+					"type":	"string",
+					"alias":	"Universal set"
+				},
+				"level":	{
+					"type":	"numeric",
+					"alias":	"Level"
+				},
+				"marginal":	{
+					"type":	"numeric",
+					"alias":	"Marginal"
+				},
+				"lower":	{
+					"type":	"numeric",
+					"alias":	"Lower"
+				},
+				"upper":	{
+					"type":	"numeric",
+					"alias":	"Upper"
+				},
+				"scale":	{
+					"type":	"numeric",
+					"alias":	"Scale"
+				}
+			}
+		},
+		"mind":	{
+			"alias":	"mind",
+			"symtype":	"parameter",
+			"headers":	{
+				"i":	{
+					"type":	"string",
+					"alias":	"zones"
+				},
+				"j":	{
+					"type":	"string",
+					"alias":	"Aliased with i"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"mind"
+				}
+			}
+		},
+		"util":	{
+			"alias":	"util",
+			"symtype":	"parameter",
+			"headers":	{
+				"p":	{
+					"type":	"string",
+					"alias":	"price stages"
+				},
+				"i":	{
+					"type":	"string",
+					"alias":	"zones"
+				},
+				"j":	{
+					"type":	"string",
+					"alias":	"Aliased with i"
+				},
+				"t":	{
+					"type":	"string",
+					"alias":	"tariff zones"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"util"
+				}
+			}
+		},
+		"frac":	{
+			"alias":	"frac",
+			"symtype":	"parameter",
+			"headers":	{
+				"p":	{
+					"type":	"string",
+					"alias":	"price stages"
+				},
+				"i":	{
+					"type":	"string",
+					"alias":	"zones"
+				},
+				"j":	{
+					"type":	"string",
+					"alias":	"Aliased with i"
+				},
+				"t":	{
+					"type":	"string",
+					"alias":	"tariff zones"
+				},
+				"value":	{
+					"type":	"numeric",
+					"alias":	"frac"
+				}
+			}
+		}
+	}
+}

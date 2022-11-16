@@ -1,0 +1,390 @@
+GAMS 41.1.0  1682d454 Oct 28, 2022          WEX-WEI x86 64bit/MS Windows - 11/16/22 13:58:15 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+   1   
+   3   
+   4  set    i    zones         /z01  *   z36 /;
+   5  set    b    border nodes  /bn01  *   bn49 /;
+   6  set    p    price stages  /p1   *   p10/;
+   7  set    t    tariff zones  /t1   *   t7/;
+   9   
+  11  Parameter
+  12  netConnect    fraction rho  /1/
+  13  xdim /6/
+  14   
+  15   
+  16  *execute_unload 'parameters.gdx' a,xdim,ydim, boderNodes;
+  18  ydim
+  19  Scalar boderNodes;
+  20  ydim=xdim;
+  21  boderNodes  =  card(i)+xdim+ydim+1;
+  22   
+  23  option limrow = 0, limcol = 0, solprint = off, sysout = off,
+  24  seed=5793;
+  25   
+  26   
+  27  alias (b,n,m), (u,v,i,j,kk), (t,t2);
+  28   
+  29  sets
+  30         e(b,b)      border edge (two border nodes) - Dual graph
+  31         a(u,u)      potential public transport network arcs - Original gragh
+  32         ae(u,u,b,b) incident border edge of transport arc -  simplify the model??
+  33   
+  34  ;
+  35   
+  36   
+  37  *  geographic settings
+  38  *  -------------------
+  39  *  xy coordinates of border edges and public transport arcs
+  40  parameter xb(b), yb(b), xu(u), yu(u);
+  41    xb(b) = mod(ord(b)-1,xdim+1) + 1;
+  42    yb(b) = floor(div(ord(b)-1,xdim+1)) + 1;
+  43    xu(u) = mod(ord(u)-1,xdim) + 1.5;
+  44    yu(u) = floor(div(ord(u)-1,xdim)) + 1.5;
+  45   
+  46  * borders and potential transport arcs
+  47    e(m,n) = (xb(n) - xb(m) = 1 and yb(n) - yb(m) = 0 ) or
+  48             (xb(n) - xb(m) = 0 and yb(n) - yb(m) = 1 );
+  49    a(i,j) = (xu(i) - xu(j) = 1 and yu(i) - yu(j) = 0 ) or
+  50             (xu(i) - xu(j) = 0 and yu(i) - yu(j) = 1 );
+  51    a(i,j) = (a(i,j) or a(j,i));
+  52   
+  53   
+  54   
+  55  set iLj(i,j) auxilliary set i less than j;
+  56      iLj(i,j) = (ord(i) < ord(j));
+  58  parameter d(i,j) length of transport network arc;
+  60    d(a(iLj))        = (10 + uniform(-1,1))/xdim;
+  61    d(a(i,j))$d(j,i) = d(j,i);
+  62   
+  63   
+  64   
+  65  * central business district located in the centre
+  67  singleton set cbd(i);
+  69  cbd(i) = (ord(i) = round((card(i)+1)/2));
+  70   
+  71  * definition of public network graph
+  72  * shortest paths from central business district
+  73  parameter  s(i) supply of node;
+  74  s(i) = - 1 + card(u)$cbd(i);
+  75   
+  76   
+  77   
+  78  variable          F;
+  79   
+  80  positive variable X;
+  81   
+  82  equations  obj, flow;
+  83  obj     .. F - sum(a, d(a)*X(a))                 =e=    0;
+  84  flow(i) .. sum(a(i,j), X(a)) - sum(a(j,i), X(a)) =e= s(i);
+  85   
+  86  model spath /obj, flow /;
+  87   
+  88  display a;
+  89   
+  90  solve spath using lp minimizing F;
+  91   
+  92   
+  94  set g(i,j) transport network graph;
+  96  g(a(i,j)) = (X.l(i,j) or X.l(j,i));
+  97   
+  98  * selecting additional arcs
+  99  equation add_arcs;
+ 100    add_arcs .. sum(a(iLj)$(not g(a)), X(a)) =e= round((card(a) - card(g))*netConnect/2);
+ 101   
+ 102  model extension /obj, add_arcs/;
+ 103   
+ 104  X.up(a)   = 1;
+ 105   
+ 106  solve extension using lp minimizing F;
+ 107   
+ 108   
+ 109  g(a(i,j)) = (g(a) or X.l(i,j) or X.l(j,i));
+ 110  x.up(a)   = inf;
+ 111  a(i,j)    = (g(i,j));
+ 112   
+ 113   
+ 114   
+ 115  ae(a(i,j),e(n,m)) =
+ 116             abs( xu(i)- xb(n)) = 0.5 and abs( xu(i)- xb(m)) = 0.5 and
+ 117             abs( xu(j)- xb(n)) = 0.5 and abs( xu(j)- xb(m)) = 0.5 and
+ 118             abs( yu(i)- yb(n)) = 0.5 and abs( yu(i)- yb(m)) = 0.5 and
+ 119             abs( yu(j)- yb(n)) = 0.5 and abs( yu(j)- yb(m)) = 0.5;
+ 120   
+ 121  * distance matrix transport network
+ 122  parameter  s2(u,i) supply of node;
+ 123  s2(u,i) = - 1;
+ 124  s2(u,u) = - 1 + card(u);
+ 125   
+ 126  positive variables X2;
+ 127   
+ 128  equations  obj2, flow2;
+ 129  obj2        .. F - sum((u,a), d(a)*X2(u,a))                =e=    0;
+ 130  flow2(u,i)  .. sum(a(i,j), X2(u,a)) - sum(a(j,i), X2(u,a)) =e= s2(u,i);
+ 131   
+ 132   
+ 133  model spath2 /obj2, flow2 /;
+ 134   
+ 135  solve spath2 using lp minimizing F;
+ 136   
+ 137   
+ 138  parameter d2(i,j);
+ 139  d2(i,j) = d(i,j);
+ 140   
+ 141  positive variables X3;
+ 142  equation dist, obj3;
+ 143  dist(u,a(i,j))$X2.l(u,a) .. X3(u,j) =g= X3(u,i) + d2(i,j);
+ 144  obj3                     .. F       =e= sum((u,i), X3(u,i));
+ 145  model spath3 /flow2, dist, obj3/;
+ 146  solve spath3 using lp minimizing F;
+ 147   
+ 148   
+ 149   
+ 151  parameters dij;
+ 153  Parameter d2ij;
+ 154  dij(i,j) = X3.l(i,j);
+ 155   
+ 156  * Max number of tariff zones between i and j
+ 157  d2(i,j) = 1;
+ 158  solve spath3 using lp minimizing F;
+ 159   
+ 160  d2ij(i,j) = X3.l(i,j)+1;
+ 161   
+ 162  set uv(u,v), ua(u,i,j);
+ 163   
+ 164  uv(u,v) = (ord(u)<ord(v));
+ 165  ua(u,a) = (X2.l(u,a));
+ 166   
+ 167  * arcs of each shortest path relation from u to v
+ 168  positive variable X4;
+ 169  equation obj4, flow4;
+ 170  obj4             .. F - sum((uv(u,v),ua(u,a)), X4(uv,a))  =e= 0;
+ 171  flow4(uv(u,v),i) .. sum(ua(u,i,j), X4(u,v,i,j)) -
+ 172                      sum(ua(u,j,i), X4(u,v,j,i))
+ 173                      =e= 0 + 1$(ord(i) = ord(u)) - 1$(ord(i) = ord(v));
+ 174  model spath4 /obj4, flow4/;
+ 175  solve spath4 using lp minimizing F;
+ 176   
+ 177   
+ 178  variable           F;
+ 179  positive  variable y, q;
+ 180   
+ 181   
+ 182  equations objsrt, flowsrt;
+ 183  objsrt       ..  F =e= sum((i,a), d(a) * y(i,a));
+ 184  flowsrt(i,j)..
+ 185                sum(a(j,u), y(i,j,u)) - sum(a(u,j), y(i,u,j))
+ 186                =e= - 1 + card(i)$(ord(i) = ord(j));
+ 187  model spat /objsrt, flowsrt/;
+ 188  spat.optfile=1;
+ 189  solve spat minimizing F using LP;
+ 190   
+ 191  set ia;
+ 192  * /* shortest path tree for TAZ i */
+ 193  ia(i,a)   = y.l(i,a);
+ 194   
+ 195  y.lo(i,a) = y.l(i,a);
+ 196   
+ 197  * q <- total areas touched by the shortest route
+ 198   
+ 199  equation border;
+ 200  border(i,j,u)$(ia(i,j,u)) .. q(i,u) =e= q(i,j) + 1;
+ 201  model max_number_borders /obj2, border/;
+ 202  solve max_number_borders minimizing F using LP;
+ 203   
+ 204  parameter maxzones;
+ 205  maxzones(i,j) = 1 + q.l(i,j);
+ 206  maxzones(i,j) = max(maxzones(i,j), maxzones(j,i));
+ 207   
+ 208   
+ 210  parameter  rev(i,j,p,t);
+ 211  set  sp;
+ 213  set ia, ijij, rel, sp;
+ 214   
+ 215  set ijpt;
+ 216  set taz2;
+ 217  */* only taz that are connected by PT */
+ 218   
+ 219  taz2(j)                 = (sum(i, a(i,j) + a(j,i)));
+ 220  set SetTrip; SetTrip(i,j)$(taz2(i) and taz2(j) and ord(i)< ord(j) )=yes;
+ 221   
+ 222   
+ 223  ijpt(i,j,p,t) = (ord(t) <= maxzones(i,j));
+ 224   
+ 225   
+ 226   
+ 227   
+ 228   
+ 229   
+ 230  rev(i,j,p,t)$( ijpt(i,j,p,t)) = 0 ;
+ 231   
+ 232  rel(i,j)=(sum(u$ia(i,u,j),1)>0);
+ 233   
+ 234   
+ 235   
+ 236  ijij(i,j,u,v)$( ia(i,u,v) and rel(i,j) ) = yes;
+ 237   
+ 238   
+ 239   
+ 241  positive variable W;
+ 243  W.fx(i,j,u,v)$(ijij(i,j,u,v) and not ia(i,u,v)) = 0;
+ 244   
+ 245   
+ 246   
+ 247   
+ 248  variable F;
+ 249  equation objsp, flowsp;
+ 250  objsp          .. F - sum(ijij, W(ijij))  =e= 0;
+ 251   
+ 252  flowsp(i,j,u)$(SetTrip(i,j) and ord(i) < ord(j) and taz2(i) and taz2(j) and taz2(u) and rel(i,j))
+ 253                .. sum(ijij(i,j,u,v), W(i,j,u,v))
+ 254                 - sum(ijij(i,j,v,u), W(i,j,v,u))
+ 255               =e= 0
+ 256                   + 1$(ord(i) = ord(u))
+ 257                   - 1$(ord(j) = ord(u));
+ 258   
+ 259  model shortestpaths /objsp, flowsp/;
+ 260  shortestpaths.optfile=1;
+ 261  solve shortestpaths using lp minimizing F;
+ 262   
+ 263   
+ 264  sp(ijij)$W.l(ijij) = (W.l(ijij));
+ 265   
+ 266   
+ 267   
+ 268  *execute_unload 'distancia.gdx' dij;
+ 269   
+ 270  * Gravity model to determine number of trips
+ 271  scalar total_att, tinh;
+ 272   
+ 273  parameters inh(u)     inhabitants
+ 274             trips(i,j) trips
+ 275  ;
+ 276  inh(i)   = round(uniform(10000,20000));
+ 277  *execute_unload 'addInf.gdx' inh;
+ 278   
+ 279  tinh     = sum(i,inh(i));
+ 280  inh(i)   = round(inh(i)/tinh*500000);
+ 281  *execute_unload 'addInf1.gdx' inh, tinh;
+ 282   
+ 283  loop(i,
+ 284     total_att  = sum(j, inh(j)/ (1/xdim + dij(i,j) - 0.75*dij(i,j)$cbd(j)));
+ 285     trips(i,j) = inh(i)*inh(j)/ (1/xdim + dij(i,j) - 0.75*dij(i,j)$cbd(j)) / total_att;
+ 286  );
+ 287   
+ 288  execute_unload 'trips.gdx' trips;
+ 289  *$exit
+ 290  scalar ttt;
+ 291  ttt = sum((i,j), trips(i,j));
+ 292  display ttt;
+ 293   
+ 294   
+ 295  * Utility to use public transport
+ 296  * Minimum distance mind(i,j)
+ 297  * Utility util(p,i,j,t)
+ 298  * Fraction of public transport users frac(p,i,j,t)
+ 299   
+ 300  parameter price;
+ 301   
+ 302  price(p,t)  = (1 + 0.2*(ord(p)-1)) * ord(t);
+ 303   
+ 304   
+ 306  parameter mind(i,j), util(p,i,j,t), frac(p,i,j,t);
+ 307   
+ 309  mind(i,j)     = (abs(xu(j) - xu(i)) + abs(yu(j) - yu(i)))*10 / xdim;
+ 310   
+ 311  util(p,i,j,t) = - price(p,t)/(1/xdim + mind(i,j)) - 0.15*(dij(i,j) - 0.9*mind(i,j)$cbd(j));
+ 312   
+ 313   
+ 314   
+ 315  frac(p,i,j,t) = exp(util(p,i,j,t))/( 1 +  exp(util(p,i,j,t)));
+ 316   
+ 317  * Number of public transport trips
+ 318  parameter  ptt(p,i,j,t);
+ 319   
+ 320  ptt(p,i,j,t)$(ord(t) <= d2ij(i,j)) = frac(p,i,j,t) * trips(i,j);
+ 321  rev(i,j,p,t) = ptt( p,i,j,t) * price(p,t);
+ 322   
+ 323   
+ 324  parameter rconst(p), tconst(p);
+ 325   
+ 326  tconst(p)    = sum(i, frac(p,i,i,'t1') * trips(i,i));
+ 327  rconst(p)    = tconst(p) * price(p,'t1');
+ 328   
+ 329   
+ 330  rev(i,j,p,t) = round(100*rev(i,j,p,t));
+ 331  rconst(p)    = round(100*rconst(p));
+ 332   
+ 333   
+ 334   
+ 335   
+ 336  scalar scale;
+ 337   
+ 338  scale = 12/(xdim-1);
+ 339   
+ 340   
+ 341   
+ 342  set tb(b,b) potential tariff border;
+ 343   
+ 344  loop(ae(i,j,n,m)$a(i,j), tb(n,m) = yes);
+ 345  e(n,m) = (e(n,m) or e(m,n));
+ 346   
+ 347  * parametrization tz_ring
+ 348  *$LOADDC bn be zn ze p t rev sp zebe xdim ydim g
+ 349   
+ 351  alias (b,bn), (u,v,i,j,zn), (t,t2);
+ 352  alias (e,be), (iLj,ze), (ae,zebe)
+ 354  execute_unload 'informationSofar.gdx' bn, be, d, dij, zn,ze, p, rev, t, zebe,sp,cbd, xdim ydim,W,  g;
+ 355  execute_unload 'instance_zn_36_bn_49_NC_1_5793.gdx' bn, be, zn,ze, p, rev, t, zebe,sp,cbd, xdim ydim,  g;
+ 356   
+ 357   
+ 358  file log /Illusttratrion.tex/;
+ 359  put  log;
+ 360  *put '\documentclass{article}' /;
+ 361  put '\usepackage{tikz}' /;
+ 362  put '\usetikzlibrary{arrows.meta}' /;
+ 363  put '\begin{document}' /;
+ 364  put '\begin{tikzpicture}[scale = ' scale:7:5 ']' /;
+ 365  put '  \draw[step=1cm,gray,thick] (1,1) grid (' (xdim)'+1 , ' (ydim) '+1 );' /;
+ 366  *put '  \draw[step=1cm,gray,thick] (1,1) grid (' (xdim):6:0 ',' (ydim):6:0 ');' /;
+ 367  loop(a(iLj(i,j)),
+ 368   put '  \draw[dashdotted,blue, line width = 0.05cm] (';
+ 369   put xu(i):6:1 ',' yu(i):6:1  ') -- (' xu(j):6:1 ',' yu(j):6:1 ');' /;
+ 370  );
+ 371  loop(b,
+ 372   put '  \draw (' xb(b):3:0 ',' yb(b):3:0 ') node [rounded corners=0.2pt, inner sep=1pt, text=white, fill=gray]{{\tiny ' b.tl:<6:0'}};'/;
+ 373  );
+ 374  loop(u,
+ 375   put '  \draw (' xu(u):4:1 ',' yu(u):4:1 ') node [circle, inner sep=0.5pt, text=white, fill=blue]{{\tiny \bf ' u.tl:<4:0'}};'/;
+ 376  );
+ 377   
+ 378  put '\end{tikzpicture}' /;
+ 379  *put '\end{document}'/;
+ 380  putclose;
+ 381  execute_unload 'taz.gdx';
+EXIT C:\Users\lorer\OneDrive - Universidad de la Sabana\Documentos\OVGU_Lectures_HiWi\GAMS-MIRO\01_LSRR\instanceGenerator.gms
+GAMS 41.1.0  1682d454 Oct 28, 2022          WEX-WEI x86 64bit/MS Windows - 11/16/22 13:58:15 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Include File Summary
+
+
+   SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
+
+     1        1 INPUT          0       0  C:\Users\lorer\OneDrive - Universidad de la Sabana\Documentos\OVGU_Lectures_HiWi\GAMS-MIRO\01_LSRR\instanceGenerator.gms
+     2      382 EXIT           1     382  C:\Users\lorer\OneDrive - Universidad de la Sabana\Documentos\OVGU_Lectures_HiWi\GAMS-MIRO\01_LSRR\instanceGenerator.gms
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  41.1.0 1682d454 WEX-WEI
+
+
+USER: Small MUD - 5 User License                     S201109/0001AO-GEN
+      Otto-von-Guericke-Universitaet Magdeburg, W3 Operations MaDC15601
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\lorer\OneDrive - Universidad de la Sabana\Documentos\OVGU_Lectures_HiWi\GAMS-MIRO\01_LSRR\instanceGenerator.gms
+Output     C:\Users\lorer\OneDrive - Universidad de la Sabana\Documentos\OVGU_Lectures_HiWi\GAMS-MIRO\01_LSRR\instanceGenerator.lst

@@ -1,0 +1,514 @@
+--- C:/Users/lorer/OneDrive - Universidad de la Sabana/Documentos/OVGU_Lectures_HiWi/GAMS-MIRO/01_LSRR
+--- Job instanceGenerator.gms Start 11/16/22 13:56:07 41.1.0 1682d454 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\41\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input "C:\Users\lorer\OneDrive - Universidad de la Sabana\Documentos\OVGU_Lectures_HiWi\GAMS-MIRO\01_LSRR\instanceGenerator.gms"
+    PageSize 0
+    ScrDir "C:\Users\lorer\OneDrive - Universidad de la Sabana\Documentos\OVGU_Lectures_HiWi\GAMS-MIRO\01_LSRR\225a\"
+    SysDir C:\GAMS\41\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+    IDCGenerateJSON conf_instancegenerator/instancegenerator_io.json
+    IDCGenerateGDX data_instancegenerator/default.gdx
+Licensee: Small MUD - 5 User License                     S201109/0001AO-GEN
+          Otto-von-Guericke-Universitaet Magdeburg, W3 Operations MaDC15601
+          C:\Users\lorer\Documents\GAMS\gamslice.txt
+Processor information: 1 socket(s), 8 core(s), and 16 thread(s) available
+GAMS 41.1.0   Copyright (C) 1987-2022 GAMS Development. All rights reserved
+--- Starting compilation
+--- instanceGenerator.gms(382) 3 Mb
+--- Starting execution: elapsed 0:00:00.007
+--- instanceGenerator.gms(88) 4 Mb
+--- Generating LP model spath
+--- instanceGenerator.gms(90) 4 Mb
+---   37 rows  121 columns  361 non-zeroes
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 1.000E+00, 3.500E+01] - Zero values observed as well
+--- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E+00, 1.830E+00]
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.014
+
+IBM ILOG CPLEX   41.1.0 1682d454 Oct 28, 2022          WEI x86 64bit/MS Window
+
+--- GAMS/Cplex licensed for continuous and discrete problems.
+--- GMO setup time: 0.00s
+--- GMO memory 0.52 Mb (peak 0.52 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 22.1.0.0 link memory 0.00 Mb (peak 0.01 Mb)
+--- Starting Cplex
+
+Version identifier: 22.1.0.0 | 2022-03-09 | 1a383f8ce
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Tried aggregator 1 time.
+LP Presolve eliminated 0 rows and 1 columns.
+Reduced LP has 36 rows, 120 columns, and 240 nonzeros.
+Presolve time = 0.00 sec. (0.08 ticks)
+
+Iteration log . . .
+Iteration:     1   Dual objective     =            53.199765
+
+--- LP status (1): optimal.
+--- Cplex Time: 0.00sec (det. 0.20 ticks)
+
+
+Optimal solution found
+Objective:          232.308354
+
+--- Reading solution for model spath
+--- Executing after solve: elapsed 0:00:00.043
+--- instanceGenerator.gms(104) 4 Mb
+--- Generating LP model extension
+--- instanceGenerator.gms(106) 4 Mb
+---   2 rows  121 columns  146 non-zeroes
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 2.500E+01, 2.500E+01] - Zero values observed as well
+--- Bound     [min, max] : [ 1.000E+00, 1.000E+00] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E+00, 1.830E+00]
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.044
+
+IBM ILOG CPLEX   41.1.0 1682d454 Oct 28, 2022          WEI x86 64bit/MS Window
+
+--- GAMS/Cplex licensed for continuous and discrete problems.
+--- GMO setup time: 0.00s
+--- GMO memory 0.51 Mb (peak 0.52 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 22.1.0.0 link memory 0.00 Mb (peak 0.01 Mb)
+--- Starting Cplex
+
+Version identifier: 22.1.0.0 | 2022-03-09 | 1a383f8ce
+CPXPARAM_Advance                                 2
+CPXPARAM_Simplex_Display                         2
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Tried aggregator 1 time.
+LP Presolve eliminated 1 rows and 121 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+
+--- LP status (1): optimal.
+--- Cplex Time: 0.00sec (det. 0.03 ticks)
+
+
+Optimal solution found
+Objective:           42.138842
+
+--- Reading solution for model extension
+--- Executing after solve: elapsed 0:00:00.067
+--- instanceGenerator.gms(124) 4 Mb
+--- Generating LP model spath2
+--- instanceGenerator.gms(135) 5 Mb
+---   1,297 rows  4,321 columns  12,961 non-zeroes
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 1.000E+00, 3.500E+01] - Zero values observed as well
+--- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E+00, 1.830E+00]
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.082
+
+IBM ILOG CPLEX   41.1.0 1682d454 Oct 28, 2022          WEI x86 64bit/MS Window
+
+--- GAMS/Cplex licensed for continuous and discrete problems.
+--- GMO setup time: 0.00s
+--- Space for names approximately 0.13 Mb
+--- Use option 'names no' to turn use of names off
+--- GMO memory 1.65 Mb (peak 1.69 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 22.1.0.0 link memory 0.10 Mb (peak 0.41 Mb)
+--- Starting Cplex
+
+Version identifier: 22.1.0.0 | 2022-03-09 | 1a383f8ce
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Tried aggregator 1 time.
+LP Presolve eliminated 0 rows and 1 columns.
+Reduced LP has 1296 rows, 4320 columns, and 8640 nonzeros.
+Presolve time = 0.02 sec. (3.34 ticks)
+
+Iteration log . . .
+Iteration:     1   Dual objective     =            61.332590
+Iteration:   172   Dual objective     =          3701.864814
+Iteration:   325   Dual objective     =          4824.597805
+Iteration:   474   Dual objective     =          5891.011929
+Iteration:   621   Dual objective     =          6468.129034
+Iteration:   766   Dual objective     =          7134.896338
+Iteration:   910   Dual objective     =          7494.828072
+Iteration:  1051   Dual objective     =          7806.665421
+Iteration:  1240   Dual objective     =          8121.917766
+
+--- LP status (1): optimal.
+--- Cplex Time: 0.02sec (det. 15.03 ticks)
+
+
+Optimal solution found
+Objective:         8187.206752
+
+--- Reading solution for model spath2
+--- Executing after solve: elapsed 0:00:00.116
+--- instanceGenerator.gms(139) 5 Mb
+--- Generating LP model spath3
+--- instanceGenerator.gms(146) 6 Mb
+---   2,557 rows  5,617 columns  12,457 non-zeroes
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 1.000E+00, 3.500E+01] - Zero values observed as well
+--- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E+00, 1.000E+00]
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.124
+
+IBM ILOG CPLEX   41.1.0 1682d454 Oct 28, 2022          WEI x86 64bit/MS Window
+
+--- GAMS/Cplex licensed for continuous and discrete problems.
+--- GMO setup time: 0.00s
+--- Space for names approximately 0.18 Mb
+--- Use option 'names no' to turn use of names off
+--- GMO memory 1.95 Mb (peak 1.99 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 22.1.0.0 link memory 0.14 Mb (peak 0.56 Mb)
+--- Starting Cplex
+
+Version identifier: 22.1.0.0 | 2022-03-09 | 1a383f8ce
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Tried aggregator 1 time.
+LP Presolve eliminated 1016 rows and 4074 columns.
+Aggregator did 1525 substitutions.
+Reduced LP has 15 rows, 18 columns, and 30 nonzeros.
+Presolve time = 0.00 sec. (3.16 ticks)
+
+Iteration log . . .
+Iteration:     1   Dual infeasibility =            12.000000
+Iteration:     8   Dual objective     =          7985.151534
+
+--- LP status (1): optimal.
+--- Cplex Time: 0.02sec (det. 5.52 ticks)
+
+
+Optimal solution found
+Objective:         8187.206752
+
+--- Reading solution for model spath3
+--- Executing after solve: elapsed 0:00:00.158
+--- instanceGenerator.gms(157) 6 Mb
+--- Generating LP model spath3
+--- instanceGenerator.gms(158) 6 Mb
+---   2,557 rows  5,617 columns  12,457 non-zeroes
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 1.000E+00, 3.500E+01] - Zero values observed as well
+--- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E+00, 1.000E+00]
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.169
+
+IBM ILOG CPLEX   41.1.0 1682d454 Oct 28, 2022          WEI x86 64bit/MS Window
+
+--- GAMS/Cplex licensed for continuous and discrete problems.
+--- GMO setup time: 0.00s
+--- Space for names approximately 0.18 Mb
+--- Use option 'names no' to turn use of names off
+--- GMO memory 1.95 Mb (peak 1.99 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 22.1.0.0 link memory 0.14 Mb (peak 0.56 Mb)
+--- Starting Cplex
+
+Version identifier: 22.1.0.0 | 2022-03-09 | 1a383f8ce
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Slack removed by singularity.
+Tried aggregator 1 time.
+LP Presolve eliminated 684 rows and 3717 columns.
+Aggregator did 1648 substitutions.
+Reduced LP has 224 rows, 252 columns, and 448 nonzeros.
+Presolve time = 0.00 sec. (3.49 ticks)
+
+Iteration log . . .
+Iteration:     1   Dual infeasibility =           219.000000
+Iteration:    93   Dual infeasibility =            44.000000
+Iteration:   113   Dual objective     =          4696.000000
+Iteration:   196   Dual objective     =          8444.000000
+
+--- LP status (1): optimal.
+--- Cplex Time: 0.02sec (det. 7.28 ticks)
+
+
+Optimal solution found
+Objective:        10486.000000
+
+--- Reading solution for model spath3
+--- Executing after solve: elapsed 0:00:00.207
+--- instanceGenerator.gms(165) 6 Mb
+--- Generating LP model spath4
+--- instanceGenerator.gms(175) 16 Mb
+---   22,681 rows  22,051 columns  66,151 non-zeroes
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 1.000E+00, 1.000E+00] - Zero values observed as well
+--- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E+00, 1.000E+00]
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.254
+
+IBM ILOG CPLEX   41.1.0 1682d454 Oct 28, 2022          WEI x86 64bit/MS Window
+
+--- GAMS/Cplex licensed for continuous and discrete problems.
+--- GMO setup time: 0.00s
+--- Space for names approximately 1.17 Mb
+--- Use option 'names no' to turn use of names off
+--- GMO memory 8.62 Mb (peak 8.79 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 22.1.0.0 link memory 0.68 Mb (peak 2.80 Mb)
+--- Starting Cplex
+
+Version identifier: 22.1.0.0 | 2022-03-09 | 1a383f8ce
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Tried aggregator 1 time.
+LP Presolve eliminated 22680 rows and 22051 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (11.08 ticks)
+
+--- LP status (1): optimal.
+--- Cplex Time: 0.00sec (det. 17.66 ticks)
+
+
+Optimal solution found
+Objective:         4776.000000
+
+--- Reading solution for model spath4
+--- Executing after solve: elapsed 0:00:00.321
+--- instanceGenerator.gms(188) 16 Mb
+--- Generating LP model spat
+--- instanceGenerator.gms(189) 16 Mb
+---   1,297 rows  4,321 columns  12,961 non-zeroes
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 1.000E+00, 3.500E+01] - Zero values observed as well
+--- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E+00, 1.830E+00]
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.331
+
+IBM ILOG CPLEX   41.1.0 1682d454 Oct 28, 2022          WEI x86 64bit/MS Window
+
+--- GAMS/Cplex licensed for continuous and discrete problems.
+
+*** Error Cannot open parameter file "C:\Users\lorer\OneDrive - Universidad de la Sabana\Documentos\OVGU_Lectures_HiWi\GAMS-MIRO\01_LSRR\cplex.opt"
+*** Error Error code = 2; No such file or directory
+
+--- GMO setup time: 0.00s
+--- Space for names approximately 0.13 Mb
+--- Use option 'names no' to turn use of names off
+--- GMO memory 1.65 Mb (peak 1.69 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 22.1.0.0 link memory 0.10 Mb (peak 0.41 Mb)
+--- Starting Cplex
+
+Version identifier: 22.1.0.0 | 2022-03-09 | 1a383f8ce
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Tried aggregator 1 time.
+LP Presolve eliminated 0 rows and 1 columns.
+Reduced LP has 1296 rows, 4320 columns, and 8640 nonzeros.
+Presolve time = 0.00 sec. (3.34 ticks)
+
+Iteration log . . .
+Iteration:     1   Dual objective     =            61.332590
+Iteration:   172   Dual objective     =          3701.864814
+Iteration:   325   Dual objective     =          4824.597805
+Iteration:   474   Dual objective     =          5891.011929
+Iteration:   621   Dual objective     =          6468.129034
+Iteration:   766   Dual objective     =          7134.896338
+Iteration:   910   Dual objective     =          7494.828072
+Iteration:  1051   Dual objective     =          7806.665421
+Iteration:  1240   Dual objective     =          8121.917766
+
+--- LP status (1): optimal.
+--- Cplex Time: 0.00sec (det. 15.03 ticks)
+
+
+Optimal solution found
+Objective:         8187.206752
+
+--- Reading solution for model spat
+--- Executing after solve: elapsed 0:00:00.377
+--- instanceGenerator.gms(195) 16 Mb
+--- Generating LP model max_number_borders
+--- instanceGenerator.gms(202) 16 Mb
+---   1,261 rows  5,617 columns  6,841 non-zeroes
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 1.000E+00, 1.000E+00] - Zero values observed as well
+--- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E+00, 1.830E+00]
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.386
+
+IBM ILOG CPLEX   41.1.0 1682d454 Oct 28, 2022          WEI x86 64bit/MS Window
+
+--- GAMS/Cplex licensed for continuous and discrete problems.
+--- GMO setup time: 0.00s
+--- Space for names approximately 0.16 Mb
+--- Use option 'names no' to turn use of names off
+--- GMO memory 1.30 Mb (peak 1.35 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 22.1.0.0 link memory 0.12 Mb (peak 0.41 Mb)
+--- Starting Cplex
+
+Version identifier: 22.1.0.0 | 2022-03-09 | 1a383f8ce
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Tried aggregator 1 time.
+LP Presolve eliminated 1260 rows and 5617 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (1.26 ticks)
+
+--- LP status (1): optimal.
+--- Cplex Time: 0.00sec (det. 1.84 ticks)
+
+
+Optimal solution found
+Objective:            0.000000
+
+--- Reading solution for model max_number_borders
+--- Executing after solve: elapsed 0:00:00.418
+--- instanceGenerator.gms(260) 17 Mb
+--- Generating LP model shortestpaths
+--- instanceGenerator.gms(261) 28 Mb
+---   22,681 rows  44,101 columns  88,201 non-zeroes
+--- Range statistics (absolute non-zero finite values)
+--- RHS       [min, max] : [ 1.000E+00, 1.000E+00] - Zero values observed as well
+--- Bound     [min, max] : [        NA,        NA] - Zero values observed as well
+--- Matrix    [min, max] : [ 1.000E+00, 1.000E+00]
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.513
+
+IBM ILOG CPLEX   41.1.0 1682d454 Oct 28, 2022          WEI x86 64bit/MS Window
+
+--- GAMS/Cplex licensed for continuous and discrete problems.
+
+*** Error Cannot open parameter file "C:\Users\lorer\OneDrive - Universidad de la Sabana\Documentos\OVGU_Lectures_HiWi\GAMS-MIRO\01_LSRR\cplex.opt"
+*** Error Error code = 2; No such file or directory
+
+--- GMO setup time: 0.00s
+--- Space for names approximately 1.74 Mb
+--- Use option 'names no' to turn use of names off
+--- GMO memory 12.22 Mb (peak 12.56 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 22.1.0.0 link memory 1.10 Mb (peak 4.21 Mb)
+--- Starting Cplex
+
+Version identifier: 22.1.0.0 | 2022-03-09 | 1a383f8ce
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Tried aggregator 1 time.
+LP Presolve eliminated 22680 rows and 44101 columns.
+All rows and columns eliminated.
+Presolve time = 0.02 sec. (14.97 ticks)
+
+--- LP status (1): optimal.
+--- Cplex Time: 0.02sec (det. 22.49 ticks)
+
+
+Optimal solution found
+Objective:         2520.000000
+
+--- Reading solution for model shortestpaths
+--- Executing after solve: elapsed 0:00:00.597
+--- instanceGenerator.gms(288) 28 Mb
+--- GDX File (execute_unload) C:\Users\lorer\OneDrive - Universidad de la Sabana\Documentos\OVGU_Lectures_HiWi\GAMS-MIRO\01_LSRR\trips.gdx
+--- instanceGenerator.gms(354) 37 Mb
+--- GDX File (execute_unload) C:\Users\lorer\OneDrive - Universidad de la Sabana\Documentos\OVGU_Lectures_HiWi\GAMS-MIRO\01_LSRR\informationSofar.gdx
+--- instanceGenerator.gms(355) 37 Mb
+--- GDX File (execute_unload) C:\Users\lorer\OneDrive - Universidad de la Sabana\Documentos\OVGU_Lectures_HiWi\GAMS-MIRO\01_LSRR\instance_zn_36_bn_49_NC_1_5793.gdx
+--- instanceGenerator.gms(381) 37 Mb
+--- GDX File (execute_unload) C:\Users\lorer\OneDrive - Universidad de la Sabana\Documentos\OVGU_Lectures_HiWi\GAMS-MIRO\01_LSRR\taz.gdx
+--- Putfile log C:\Users\lorer\OneDrive - Universidad de la Sabana\Documentos\OVGU_Lectures_HiWi\GAMS-MIRO\01_LSRR\Illusttratrion.tex
+--- GDX File C:\Users\lorer\OneDrive - Universidad de la Sabana\Documentos\OVGU_Lectures_HiWi\GAMS-MIRO\01_LSRR\data_instancegenerator\default.gdx
+*** Status: Normal completion
+--- Job instanceGenerator.gms Stop 11/16/22 13:56:08 elapsed 0:00:00.799
+
+INFO [2022-11-16 13:56:11] Data: 'default.gdx' skipped because it has not changed since the last start.

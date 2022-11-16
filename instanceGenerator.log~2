@@ -1,0 +1,31 @@
+
+--- Job instanceGenerator.gms Start 11/16/22 13:54:42 41.1.0 1682d454 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\41\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input "C:\Users\lorer\OneDrive - Universidad de la Sabana\Documentos\OVGU_Lectures_HiWi\GAMS-MIRO\01_LSRR\instanceGenerator.gms"
+    PageSize 0
+    Action C
+    ScrDir "C:\Users\lorer\OneDrive - Universidad de la Sabana\Documentos\OVGU_Lectures_HiWi\GAMS-MIRO\01_LSRR\225a\"
+    SysDir C:\GAMS\41\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+    IDCJSON conf_instancegenerator/instancegenerator_io.json
+Licensee: Small MUD - 5 User License                     S201109/0001AO-GEN
+          Otto-von-Guericke-Universitaet Magdeburg, W3 Operations MaDC15601
+          C:\Users\lorer\Documents\GAMS\gamslice.txt
+Processor information: 1 socket(s), 8 core(s), and 16 thread(s) available
+GAMS 41.1.0   Copyright (C) 1987-2022 GAMS Development. All rights reserved
+--- Starting compilation
+--- instanceGenerator.gms(382) 3 Mb
+*** Status: Normal completion
+--- Job instanceGenerator.gms Stop 11/16/22 13:54:42 elapsed 0:00:00.010
+
+INFO [2022-11-16 13:54:44] Compressing model files...
+INFO [2022-11-16 13:54:44] Generating miroapp file...
+INFO [2022-11-16 13:54:45] Successfully deployed MIRO app to: C:/Users/lorer/OneDrive - Universidad de la Sabana/Documentos/OVGU_Lectures_HiWi/GAMS-MIRO/01_LSRR/instanceGenerator.miroapp
+
+instanceGenerator.miroapp successfully deployed to location 

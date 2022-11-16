@@ -1,0 +1,101 @@
+{
+  "theme": "browser",
+  "customCss": true,
+  "excelIncludeMeta": true,
+  "excelIncludeEmptySheets": true,
+  "defaultRendererOutput": "miroPivot",
+  "autoGenInputGraphs": true,
+  "storeLogFilesDuration": 7,
+  "defCompMode": "split",
+  "pivotCompSettings": {
+    "hidePivotControls": false,
+    "fixedColumns": true
+  },
+  "activateModules": {
+    "loadLocal": true,
+    "logFile": true,
+    "lstFile": true,
+    "attachments": true,
+    "hcube": false,
+    "downloadTempFiles": false
+  },
+  "aggregateWidgets": true,
+  "overwriteSheetOrder": {
+    "input": ["i", "b", "p", "t", "_scalars", "_widgets"]
+  },
+  "overwriteAliases": {
+    "netconnect": {
+      "newAlias": "fraction rho"
+    },
+    "xdim": {
+      "newAlias": "xdim"
+    },
+    "cbd": {
+      "newAlias": "cbd"
+    },
+    "i": {
+      "newAlias": "zones"
+    },
+    "b": {
+      "newAlias": "border nodes"
+    },
+    "p": {
+      "newAlias": "price stages"
+    },
+    "t": {
+      "newAlias": "tariff zones"
+    },
+    "_scalars": {
+      "newAlias": "Scalars"
+    },
+    "d": {
+      "newAlias": "length of transport network arc"
+    },
+    "_scalars_out": {
+      "newAlias": "Output Scalars"
+    },
+    "g": {
+      "newAlias": "transport network graph"
+    },
+    "dij": {
+      "newAlias": "dij"
+    },
+    "rev": {
+      "newAlias": "rev"
+    },
+    "sp": {
+      "newAlias": "sp"
+    },
+    "w": {
+      "newAlias": "w"
+    },
+    "mind": {
+      "newAlias": "mind"
+    },
+    "util": {
+      "newAlias": "util"
+    },
+    "frac": {
+      "newAlias": "frac"
+    }
+  },
+  "roundingDecimals": 2,
+  "UILogo": "paper_Fig.jpg",
+  "pageTitle": "Instance Generator",
+  "readme": {
+    "tabTitle": "Description",
+    "filename": "Readme",
+    "enableMath": true
+  },
+  "handsontable": {
+    "stretchH": "none",
+    "readonly": false,
+    "contextMenu": {
+      "enabled": true,
+      "allowRowEdit": true,
+      "allowColEdit": true
+    },
+    "height": 700,
+    "colWidths": 200
+  }
+}
