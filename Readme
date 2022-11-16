@@ -100,6 +100,7 @@ NC: Network connectivity
 
 
 Input example
+![exampleOutput](https://user-images.githubusercontent.com/39961021/202222178-404ed0ec-ecfa-4751-9a40-5dde41fff07e.png)
 
 
 
@@ -131,6 +132,9 @@ $\pi_{pt}$: Price per tariff zone, if $t$ tariff zones are visited given price s
 $r_{ijt}\left( \pi_{pt} \right)$: Expected revenue corresponding to $\left(j,i\right)\in \mathcal{A}$, if $t= 1, \ldots, T_{ij}$ tariff zones are visited on the shortest path from $i \in \mathcal{I}$ to $j \in \mathcal{I}$
 
 Instance visualization
+
+
+![exampleOutput](https://user-images.githubusercontent.com/39961021/202222178-404ed0ec-ecfa-4751-9a40-5dde41fff07e.png)
 
 
 
