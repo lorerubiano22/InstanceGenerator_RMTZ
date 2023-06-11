@@ -29,7 +29,7 @@ Artificial cities with one or more than one central business district: $\left|\m
 
 Service areas with rectangular shapes: $\sqrt{\left|\mathcal{I}\right|} \in \mathbb{Z}$
 
-Network connectivity (NC) defines the size of the set $\mathcal{A} $ as $\mid \mathcal{A} \mid$ = $\mid \mathcal{I} \mid \cdot (\mid \mathcal{I} \mid -\text{1}) \cdot$ NC , where NC >0  and NC $\leq$ 1
+Network connectivity (NC) defines the size of the set $\mathcal{A}$ as $\mid \mathcal{A} \mid$ = $\mid \mathcal{I} \mid \cdot (\mid \mathcal{I} \mid -\text{1}) \cdot$ NC , where NC >0  and NC $\leq$ 1
 
 
 Number of the center node: $bcd$ = $\mid \mathcal{I} \mid$ - $\frac{ \mid \mathcal{I} \mid - \text{1}}{\text{2}}$
