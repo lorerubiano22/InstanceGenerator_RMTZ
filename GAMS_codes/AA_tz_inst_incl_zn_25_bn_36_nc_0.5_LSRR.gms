@@ -1,0 +1,11 @@
+set i zones /zn01* zn25/;
+set b borderNodes /bn01* bn36/;
+set    p    priceStages     /p1*p10/;
+set    t    tariffZones    /t1*t7/;
+scalar    netConnect    fractionRho /0.5/;
+Scalar    xdim;
+xdim    =    5;
+Scalar    ydim;
+ydim    =    xdim;
+Scalar boderNodes;
+boderNodes  =  card(i)+xdim+ydim+1;
